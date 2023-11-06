@@ -76,3 +76,25 @@ class TestStructs(TestCase):
         with self.assertRaises(ValueError) as ve:
             test_llist.swap_nodes("not in llist", "also not in llist")
         self.assertEqual("'not in llist' and 'also not in llist' not found in llist", str(ve.exception))
+
+    def test_llist_nth_last_node(self) -> None:
+        """test llist nth last node"""
+        llist = LinkedList(0)
+        llist.append_right(1)
+        llist.append_right(2)
+        llist.append_right(3)
+        llist.append_right(4)
+
+        last_node = llist.nth_last_node(0)
+        self.assertEqual(4, last_node.data)
+        first_to_last_node = llist.nth_last_node(1)
+        self.assertEqual(3, first_to_last_node.data)
+        second_to_last_node = llist.nth_last_node(2)
+        self.assertEqual(2, second_to_last_node.data)
+        third_to_last_node = llist.nth_last_node(3)
+        self.assertEqual(1, third_to_last_node.data)
+        fourth_to_last_node = llist.nth_last_node(4)
+        self.assertEqual(0, fourth_to_last_node.data)
+        with self.assertRaises(ValueError) as ve:
+            llist.nth_last_node(5)
+        self.assertEqual("nth_last_pointer None", str(ve.exception))
