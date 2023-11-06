@@ -32,23 +32,26 @@ class LinkedList:
         self._head_node = self._head_node.link
         return current_head_node
 
-    @property
-    def head_node(self) -> Node:
-        """get head"""
-        return self._head_node
-
-    @head_node.setter
-    def head_node(self, new_head: Node) -> None:
-        """set head"""
-        self._head_node = new_head
+    def __str__(self) -> str:
+        list_str = "<"
+        current_node: Optional[Node] = self._head_node
+        while current_node is not None:
+            if current_node.data is not None:
+                list_str += str(current_node.data)
+            current_link = current_node.link
+            if current_link is not None:
+                list_str += ", "
+            current_node = current_link
+        list_str += ">"
+        return list_str
 
     def remove_node(self, value: Any) -> None:
         """remove first node in list with matching value"""
-        current_node = self.head_node
+        current_node = self._head_node
         if current_node.data == value:
             if current_node.link is None:
                 raise ValueError("Cannot remove Node, would destroy llist by setting head to None")
-            self.head_node = current_node.link
+            self._head_node = current_node.link
         else:
             searching = True
             while searching:
@@ -67,13 +70,13 @@ class LinkedList:
 
     def append_left(self, new_value: Any) -> None:
         """add node to start of llist"""
-        new_node = Node(data=new_value, link=self.head_node)
-        self.head_node = new_node
+        new_node = Node(data=new_value, link=self._head_node)
+        self._head_node = new_node
 
     def append_right(self, value: Any) -> None:
         """add node to end of llist"""
         new_node = Node(data=value, link=None)
-        current_node = self.head_node
+        current_node = self._head_node
         while current_node.link is not None:
             current_node = current_node.link
         current_node.link = new_node
@@ -126,15 +129,22 @@ class LinkedList:
         node2.link = node1.link
         node1.link = node2_prev_link
 
-    def __str__(self) -> str:
-        list_str = "<"
-        current_node: Optional[Node] = self.head_node
-        while current_node is not None:
-            if current_node.data is not None:
-                list_str += str(current_node.data)
-            current_link = current_node.link
-            if current_link is not None:
-                list_str += ", "
-            current_node = current_link
-        list_str += ">"
-        return list_str
+    def nth_last_node(self, n: int) -> Node:
+        """find the nth last node in the list"""
+        nth_last_pointer: Optional[Node] = None
+        tail_pointer: Optional[Node] = self._head_node
+        count = 0
+
+        while tail_pointer is not None:
+            if count >= n:
+                if nth_last_pointer is None:
+                    nth_last_pointer = self._head_node
+                else:
+                    nth_last_pointer = nth_last_pointer.link
+            tail_pointer = tail_pointer.link
+            count += 1
+
+        if nth_last_pointer is None:
+            raise ValueError("nth_last_pointer None")
+
+        return nth_last_pointer
