@@ -1,7 +1,7 @@
 """Test the structs module"""
 
 from unittest import TestCase
-from src.utils.llist import (
+from utils.llist import (
     Node,
     LinkedList,
 )
