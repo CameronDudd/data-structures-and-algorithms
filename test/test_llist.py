@@ -7,8 +7,8 @@ from src.utils.llist import (
 )
 
 
-class TestStructs(TestCase):
-    """structs module unit tests"""
+class TestLlist(TestCase):
+    """llist module unit tests"""
 
     def test_node_easy(self) -> None:
         """test Node class"""
