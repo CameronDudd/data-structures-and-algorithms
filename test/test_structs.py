@@ -98,3 +98,29 @@ class TestStructs(TestCase):
         with self.assertRaises(ValueError) as ve:
             llist.nth_last_node(5)
         self.assertEqual("nth_last_pointer None", str(ve.exception))
+
+    def test_llist_middle_node(self) -> None:
+        """test llist llist middle node"""
+        # 0
+        llist = LinkedList(0)
+        self.assertEqual(0, llist.middle_node.data)
+
+        # 0 -> 1
+        llist.append_right(1)
+        self.assertEqual(1, llist.middle_node.data)
+
+        # 0 -> 1 -> 2
+        llist.append_right(2)
+        self.assertEqual(1, llist.middle_node.data)
+
+        # 0 -> 1 -> 2 -> 3
+        llist.append_right(3)
+        self.assertEqual(2, llist.middle_node.data)
+
+        # 0 -> 1 -> 2 -> 3 -> 4
+        llist.append_right(4)
+        self.assertEqual(2, llist.middle_node.data)
+
+        # 0 -> 1 -> 2 -> 3 -> 4 -> 5
+        llist.append_right(5)
+        self.assertEqual(3, llist.middle_node.data)

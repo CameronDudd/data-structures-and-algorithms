@@ -148,3 +148,15 @@ class LinkedList:
             raise ValueError("nth_last_pointer None")
 
         return nth_last_pointer
+
+    @property
+    def middle_node(self) -> Optional[Node]:
+        """find the center of the llist"""
+        fast_pointer: Optional[Node] = self._head_node
+        slow_pointer: Optional[Node] = self._head_node
+        while fast_pointer is not None:
+            fast_pointer = fast_pointer.link
+            if fast_pointer is not None and slow_pointer is not None:
+                fast_pointer = fast_pointer.link
+                slow_pointer = slow_pointer.link
+        return slow_pointer
