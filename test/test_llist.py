@@ -1,7 +1,7 @@
-"""Test the structs module"""
+"""Test the llist module"""
 
 from unittest import TestCase
-from utils.llist import (
+from src.utils.llist import (
     Node,
     LinkedList,
 )
@@ -21,6 +21,8 @@ class TestLlist(TestCase):
         """test the LinkedList class"""
         # create test llist
         test_llist = LinkedList("middle")
+        self.assertEqual("middle", test_llist.head.data)
+        self.assertIsNone(test_llist.head.link)
         self.assertEqual(["middle"], [str(_) for _ in test_llist])
 
     def test_llist_add_remove(self) -> None:

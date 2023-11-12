@@ -1,11 +1,13 @@
-"""structs module"""
+"""llist module"""
 
 from __future__ import annotations
-from typing import Any, Optional, List, Tuple
+from typing import Any, Optional, Tuple
 
 
 class Node:
     """Node data structure"""
+
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, data: Any = None, link: Optional[Node] = None) -> None:
         self.data = data
@@ -19,17 +21,17 @@ class LinkedList:
     """Linked List data structure"""
 
     def __init__(self, data: Any = None, link: Optional[Node] = None) -> None:
-        self._head_node = Node(data)
-        self._head_node.link = link
+        self._head_node: Node = Node(data=data, link=link)
 
-    def __iter__(self):
+    def __iter__(self) -> LinkedList:
         return LinkedList(data=self._head_node.data, link=self._head_node.link)
 
-    def __next__(self):
+    def __next__(self) -> Node:
         if self._head_node is None:
             raise StopIteration
         current_head_node = self._head_node
-        self._head_node = self._head_node.link
+        current_link = current_head_node.link
+        self._head_node = current_link if current_link is not None else Node()
         return current_head_node
 
     def __str__(self) -> str:
@@ -44,6 +46,11 @@ class LinkedList:
             current_node = current_link
         list_str += ">"
         return list_str
+
+    @property
+    def head(self) -> Optional[Node]:
+        """get head node"""
+        return self._head_node
 
     def remove_node(self, value: Any) -> None:
         """remove first node in list with matching value"""
@@ -93,7 +100,7 @@ class LinkedList:
             node = node.link
         return prev_node, node
 
-    def swap_nodes(self, val1, val2) -> None:
+    def swap_nodes(self, val1: Any, val2: Any) -> None:
         """swap first instance of nodes with data values val1 and val2 respectively"""
 
         # no need to swap nodes of the contained data is equal
