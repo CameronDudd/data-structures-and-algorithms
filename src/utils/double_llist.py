@@ -25,12 +25,6 @@ class DoublyLinkedList:
     def __init__(self, data: Any = None, next: Optional[DoubleNode] = None, prev: Optional[DoubleNode] = None) -> None:
         self._head_node: DoubleNode = DoubleNode(data, prev, next)
 
-    # def __iter__(self) -> DoublyLinkedList:
-    # """todo"""
-
-    # def __next__(self) -> DoubleNode:
-    # """todo"""
-
     def __str__(self) -> str:
         list_str = "<"
         current_node: Optional[DoubleNode] = self._head_node
