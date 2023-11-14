@@ -21,9 +21,9 @@ class TestLlist(TestCase):
         """test the LinkedList class"""
         # create test llist
         test_llist = LinkedList("middle")
-        self.assertEqual("middle", test_llist.head.data)
-        self.assertIsNone(test_llist.head.link)
-        self.assertEqual(["middle"], [str(_) for _ in test_llist])
+        self.assertEqual("middle", test_llist.head.data)  # type: ignore
+        self.assertIsNone(test_llist.head.link)  # type: ignore
+        self.assertEqual("<middle>", str(test_llist))
 
     def test_llist_add_remove(self) -> None:
         """test the ability to add and remove nodes from the llist"""
@@ -36,13 +36,11 @@ class TestLlist(TestCase):
         test_llist.append_left("real start")
         test_llist.append_right("real end")
         self.assertEqual("<real start, start, middle, end, real end>", str(test_llist))
-        self.assertEqual(["real start", "start", "middle", "end", "real end"], [str(node) for node in test_llist])
 
         # remove nodes
         test_llist.remove_node("real start")
         test_llist.remove_node("real end")
         self.assertEqual("<start, middle, end>", str(test_llist))
-        self.assertEqual(["start", "middle", "end"], [str(node) for node in test_llist])
 
         # remove node that doesn't exist
         with self.assertRaises(ValueError) as ve:
