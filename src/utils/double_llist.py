@@ -22,8 +22,8 @@ class DoubleNode:
 class DoublyLinkedList:
     """Doubly Linked List data structure"""
 
-    def __init__(self, data: Any = None, next: Optional[DoubleNode] = None, prev: Optional[DoubleNode] = None) -> None:
-        self._head_node: DoubleNode = DoubleNode(data, prev, next)
+    def __init__(self, data: Any = None, next_: Optional[DoubleNode] = None, prev_: Optional[DoubleNode] = None) -> None:
+        self._head_node: DoubleNode = DoubleNode(data, prev_, next_)
 
     def __str__(self) -> str:
         list_str = "<"
