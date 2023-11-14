@@ -14,9 +14,9 @@ class DoubleNode:
     next: Optional[Any] = None
 
     def __str__(self) -> str:
-        prev = "" if self.prev is None else self.prev.data
-        next = "" if self.next is None else self.next.data
-        return f"{prev} <- {self.data} -> {next}"
+        prev_ = "" if self.prev is None else self.prev.data
+        next_ = "" if self.next is None else self.next.data
+        return f"{prev_} <- {self.data} -> {next_}"
 
 
 class DoublyLinkedList:
