@@ -2,17 +2,16 @@
 
 from __future__ import annotations
 from typing import Any, Optional
+from dataclasses import dataclass
 
 
+@dataclass
 class DoubleNode:
     """Doubly linked Node data structure"""
 
-    # pylint: disable=too-few-public-methods
-
-    def __init__(self, data: Any = None, previous_link: Optional[DoubleNode] = None, next_link: Optional[DoubleNode] = None) -> None:
-        self.data = data
-        self.prev = previous_link
-        self.next = next_link
+    data: Optional[Any] = None
+    prev: Optional[Any] = None
+    next: Optional[Any] = None
 
     def __str__(self) -> str:
         prev = "" if self.prev is None else self.prev.data
@@ -23,14 +22,14 @@ class DoubleNode:
 class DoublyLinkedList:
     """Doubly Linked List data structure"""
 
-    def __init__(self, data: Any = None, next_link: Optional[DoubleNode] = None, prev_link: Optional[DoubleNode] = None) -> None:
-        self._head_node: DoubleNode = DoubleNode(data=data, next_link=next_link, previous_link=prev_link)
+    def __init__(self, data: Any = None, next: Optional[DoubleNode] = None, prev: Optional[DoubleNode] = None) -> None:
+        self._head_node: DoubleNode = DoubleNode(data, prev, next)
 
-    def __iter__(self) -> DoublyLinkedList:
-        """todo"""
+    # def __iter__(self) -> DoublyLinkedList:
+    # """todo"""
 
-    def __next__(self) -> DoubleNode:
-        """todo"""
+    # def __next__(self) -> DoubleNode:
+    # """todo"""
 
     def __str__(self) -> str:
         list_str = "<"
@@ -51,13 +50,13 @@ class DoublyLinkedList:
 
     def append_left(self, value: Optional[Any] = None) -> None:
         """add node to start of dllist"""
-        new_node = DoubleNode(data=value, next_link=self._head_node, previous_link=None)
+        new_node = DoubleNode(value, None, self._head_node)
         self._head_node.prev = new_node
         self._head_node = new_node
 
     def append_right(self, value: Optional[Any] = None) -> None:
         """add node to end of dllist"""
-        new_node = DoubleNode(data=value, next_link=None, previous_link=None)
+        new_node = DoubleNode(value, None, None)
         current_node = self._head_node
         while current_node.next is not None:
             current_node = current_node.next

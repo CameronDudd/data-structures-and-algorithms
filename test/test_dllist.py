@@ -16,7 +16,7 @@ class TestDoublyLlist(TestCase):
         self.assertIsNone(test_dnode.data)
         self.assertIsNone(test_dnode.next)
         self.assertIsNone(test_dnode.prev)
-        self.assertEqual("<-None->", str(test_dnode))
+        self.assertEqual(" <- None -> ", str(test_dnode))
 
     def test_dllist_easy(self) -> None:
         """test DoublyLinkedList class"""
@@ -32,6 +32,7 @@ class TestDoublyLlist(TestCase):
 
         test_dllist = DoublyLinkedList()
         test_dllist.append_left()
+        self.assertEqual("<None, None>", str(test_dllist))
         test_dllist.append_right()
         self.assertEqual("<None, None, None>", str(test_dllist))
 
@@ -77,8 +78,12 @@ class TestDoublyLlist(TestCase):
         test_dllist.remove_right()
         self.assertEqual("<start, middle, end>", str(test_dllist))
 
-        return
-        # todo
         # remove middle node
         test_dllist.remove_middle()
         self.assertEqual("<start, end>", str(test_dllist))
+
+        test_dllist.remove_middle()
+        self.assertEqual("<end>", str(test_dllist))
+
+        test_dllist.remove_middle()
+        self.assertEqual("<None>", str(test_dllist))

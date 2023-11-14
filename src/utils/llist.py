@@ -2,16 +2,15 @@
 
 from __future__ import annotations
 from typing import Any, Optional, Tuple
+from dataclasses import dataclass
 
 
+@dataclass
 class Node:
     """Node data structure"""
 
-    # pylint: disable=too-few-public-methods
-
-    def __init__(self, data: Any = None, link: Optional[Node] = None) -> None:
-        self.data = data
-        self.link = link
+    data: Optional[Any] = None
+    link: Optional[Any] = None
 
     def __str__(self) -> str:
         return str(self.data)
@@ -20,32 +19,24 @@ class Node:
 class LinkedList:
     """Linked List data structure"""
 
-    def __init__(self, data: Any = None, link: Optional[Node] = None) -> None:
-        self._head_node: Node = Node(data=data, link=link)
+    def __init__(self, data: Optional[Any] = None, link: Optional[Node] = None) -> None:
+        self._head_node: Node = Node(data, link)
 
-    def __iter__(self) -> LinkedList:
-        return LinkedList(data=self._head_node.data, link=self._head_node.link)
+    # fixme: def __iter__(self) -> LinkedList:
+    # return LinkedList(data=self._head_node.data, link=self._head_node.link)
 
-    def __next__(self) -> Node:
-        if self._head_node is None:
-            raise StopIteration
-        current_head_node = self._head_node
-        current_link = current_head_node.link
-        self._head_node = current_link if current_link is not None else Node()
-        return current_head_node
-
-    def __str__(self) -> str:
-        list_str = "<"
-        current_node: Optional[Node] = self._head_node
-        while current_node is not None:
-            if current_node.data is not None:
-                list_str += str(current_node.data)
-            current_link = current_node.link
-            if current_link is not None:
-                list_str += ", "
-            current_node = current_link
-        list_str += ">"
-        return list_str
+    # fixme: def __str__(self) -> str:
+    #     list_str = "<"
+    #     current_node: Optional[Node] = self._head_node
+    #     while current_node is not None:
+    #         if current_node.data is not None:
+    #             list_str += str(current_node.data)
+    #         current_link = current_node.link
+    #         if current_link is not None:
+    #             list_str += ", "
+    #         current_node = current_link
+    #     list_str += ">"
+    #     return list_str
 
     @property
     def head(self) -> Optional[Node]:
