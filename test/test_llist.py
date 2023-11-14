@@ -1,7 +1,7 @@
 """Test the llist module"""
 
 from unittest import TestCase
-from src.utils.llist import (
+from utils.llist import (
     Node,
     LinkedList,
 )
@@ -103,24 +103,24 @@ class TestLlist(TestCase):
         """test llist llist middle node"""
         # 0
         llist = LinkedList(0)
-        self.assertEqual(0, llist.middle_node.data)
+        self.assertEqual(0, llist.middle_node.data)  # type: ignore
 
         # 0 -> 1
         llist.append_right(1)
-        self.assertEqual(1, llist.middle_node.data)
+        self.assertEqual(1, llist.middle_node.data)  # type: ignore
 
         # 0 -> 1 -> 2
         llist.append_right(2)
-        self.assertEqual(1, llist.middle_node.data)
+        self.assertEqual(1, llist.middle_node.data)  # type: ignore
 
         # 0 -> 1 -> 2 -> 3
         llist.append_right(3)
-        self.assertEqual(2, llist.middle_node.data)
+        self.assertEqual(2, llist.middle_node.data)  # type: ignore
 
         # 0 -> 1 -> 2 -> 3 -> 4
         llist.append_right(4)
-        self.assertEqual(2, llist.middle_node.data)
+        self.assertEqual(2, llist.middle_node.data)  # type: ignore
 
         # 0 -> 1 -> 2 -> 3 -> 4 -> 5
         llist.append_right(5)
-        self.assertEqual(3, llist.middle_node.data)
+        self.assertEqual(3, llist.middle_node.data)  # type: ignore

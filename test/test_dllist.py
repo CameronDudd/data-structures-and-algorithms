@@ -1,7 +1,7 @@
 """Test the double_llist module"""
 
 from unittest import TestCase
-from src.utils.double_llist import (
+from utils.double_llist import (
     DoubleNode,
     DoublyLinkedList,
 )
