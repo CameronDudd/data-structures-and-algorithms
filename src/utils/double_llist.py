@@ -17,7 +17,7 @@ class DoubleNode:
     def __str__(self) -> str:
         prev = "" if self.prev is None else self.prev.data
         next = "" if self.next is None else self.next.data
-        return f"{prev}<-{self.data}->{next}"
+        return f"{prev} <- {self.data} -> {next}"
 
 
 class DoublyLinkedList:
@@ -52,6 +52,7 @@ class DoublyLinkedList:
     def append_left(self, value: Optional[Any] = None) -> None:
         """add node to start of dllist"""
         new_node = DoubleNode(data=value, next_link=self._head_node, previous_link=None)
+        self._head_node.prev = new_node
         self._head_node = new_node
 
     def append_right(self, value: Optional[Any] = None) -> None:
@@ -96,8 +97,6 @@ class DoublyLinkedList:
 
     def remove_middle(self) -> None:
         """remove node at the middle of dllist"""
-        # todo
-        return
         middle_node = self.middle_node
         if middle_node is not None:
             if middle_node.next is None or middle_node.prev is None:
