@@ -44,6 +44,7 @@ class DoublyLinkedList:
 
     def append_left(self, value: Optional[Any] = None) -> None:
         """add node to start of dllist"""
+
         new_node = DoubleNode(value, None, self._head_node)
         self._head_node.prev = new_node
         self._head_node = new_node
@@ -74,6 +75,7 @@ class DoublyLinkedList:
             self._head_node = DoubleNode()
         else:
             before_last.next = None
+
             before_last.next = None
 
     @property
@@ -98,3 +100,26 @@ class DoublyLinkedList:
             else:
                 middle_node.prev.next = middle_node.next
                 middle_node.next.prev = middle_node.prev
+
+    def remove_by_value(self, value: Any) -> None:
+        """remove node by value"""
+        node_to_remove = None
+        current_node: Optional[DoubleNode] = self._head_node
+        while current_node is not None:
+            if current_node.data == value:
+                node_to_remove = current_node
+                break
+            current_node = current_node.next
+        if node_to_remove is None:
+            return
+        if node_to_remove == self._head_node:
+            self.remove_left()
+        elif node_to_remove.next is None:
+            self.remove_right()
+        elif node_to_remove is not None:
+            next_node = node_to_remove.next
+            prev_node = node_to_remove.prev
+            if prev_node is not None:
+                prev_node.next = next_node
+            if next_node is not None:
+                next_node.prev = prev_node
