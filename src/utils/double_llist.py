@@ -23,6 +23,7 @@ class DoublyLinkedList:
     """Doubly Linked List data structure"""
 
     def __init__(self, data: Any = None, next_: Optional[DoubleNode] = None, prev_: Optional[DoubleNode] = None) -> None:
+        # fixme: add tail node
         self._head_node: DoubleNode = DoubleNode(data, prev_, next_)
 
     def __str__(self) -> str:
