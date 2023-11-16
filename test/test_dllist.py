@@ -87,3 +87,27 @@ class TestDoublyLlist(TestCase):
 
         test_dllist.remove_middle()
         self.assertEqual("<None>", str(test_dllist))
+
+    def test_dllist_remove_by_value(self) -> None:
+        """test the ability to remove double nodes from the dllist by value"""
+
+        test_dllist = DoublyLinkedList("middle")
+
+        # add nodes
+        test_dllist.append_left("start")
+        test_dllist.append_right("end")
+        test_dllist.append_left("real start")
+        test_dllist.append_right("real end")
+        self.assertEqual("<real start, start, middle, end, real end>", str(test_dllist))
+
+        test_dllist.remove_by_value("start")
+        self.assertEqual("<real start, middle, end, real end>", str(test_dllist))
+
+        test_dllist.remove_by_value(None)
+        self.assertEqual("<real start, middle, end, real end>", str(test_dllist))
+
+        test_dllist.remove_by_value("middle")
+        self.assertEqual("<real start, end, real end>", str(test_dllist))
+
+        test_dllist.remove_by_value("real end")
+        self.assertEqual("<real start, end>", str(test_dllist))
