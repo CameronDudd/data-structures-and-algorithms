@@ -1,10 +1,8 @@
 """Test the llist module"""
 
 from unittest import TestCase
-from utils.llist import (
-    Node,
-    LinkedList,
-)
+from utils.node import Node
+from utils.llist import LinkedList
 
 
 class TestLlist(TestCase):
@@ -14,23 +12,26 @@ class TestLlist(TestCase):
         """test Node class"""
         test_node = Node()
         self.assertIsNone(test_node.data)
-        self.assertIsNone(test_node.link)
-        self.assertEqual("None", str(test_node))
+        self.assertIsNone(test_node.next_node)
+        self.assertEqual("None > ", str(test_node))
 
     def test_llist_easy(self) -> None:
         """test the LinkedList class"""
         # create test llist
-        test_llist = LinkedList("middle")
-        self.assertEqual("middle", test_llist.head.data)  # type: ignore
-        self.assertIsNone(test_llist.head.link)  # type: ignore
+        test_llist = LinkedList()
+        test_llist.append_left("middle")
+        self.assertEqual("middle > ", str(test_llist.head))
+        assert test_llist.head is not None, "test_llist.next_node should not be None"
+        self.assertIsNone(test_llist.head.next_node)
         self.assertEqual("<middle>", str(test_llist))
 
     def test_llist_add_remove(self) -> None:
         """test the ability to add and remove nodes from the llist"""
 
-        test_llist = LinkedList("middle")
+        test_llist = LinkedList()
 
         # add nodes
+        test_llist.append_left("middle")
         test_llist.append_left("start")
         test_llist.append_right("end")
         test_llist.append_left("real start")
@@ -45,12 +46,13 @@ class TestLlist(TestCase):
         # remove node that doesn't exist
         with self.assertRaises(ValueError) as ve:
             test_llist.remove_node("value not in list")
-        self.assertEqual("LList does not contain Node with data value not in list", str(ve.exception))
+        self.assertEqual("value not in list not found in llist", str(ve.exception))
 
     def test_llist_swapping_nodes(self) -> None:
         """test the ability to swap nodes within the llist"""
 
-        test_llist = LinkedList(data="start")
+        test_llist = LinkedList()
+        test_llist.append_left("start")
         test_llist.append_right("middle")
         test_llist.append_right("end")
 
@@ -79,7 +81,8 @@ class TestLlist(TestCase):
 
     def test_llist_nth_last_node(self) -> None:
         """test llist nth last node"""
-        llist = LinkedList(0)
+        llist = LinkedList()
+        llist.append_left(0)
         llist.append_right(1)
         llist.append_right(2)
         llist.append_right(3)
@@ -101,26 +104,28 @@ class TestLlist(TestCase):
 
     def test_llist_middle_node(self) -> None:
         """test llist llist middle node"""
+        llist = LinkedList()
+
         # 0
-        llist = LinkedList(0)
-        self.assertEqual(0, llist.middle_node.data)  # type: ignore
+        llist.append_left(0)
+        self.assertEqual("0 > ", str(llist.middle_node))
 
         # 0 -> 1
         llist.append_right(1)
-        self.assertEqual(1, llist.middle_node.data)  # type: ignore
+        self.assertEqual("1 > ", str(llist.middle_node))
 
         # 0 -> 1 -> 2
         llist.append_right(2)
-        self.assertEqual(1, llist.middle_node.data)  # type: ignore
+        self.assertEqual("1 > ", str(llist.middle_node))
 
         # 0 -> 1 -> 2 -> 3
         llist.append_right(3)
-        self.assertEqual(2, llist.middle_node.data)  # type: ignore
+        self.assertEqual("2 > ", str(llist.middle_node))
 
         # 0 -> 1 -> 2 -> 3 -> 4
         llist.append_right(4)
-        self.assertEqual(2, llist.middle_node.data)  # type: ignore
+        self.assertEqual("2 > ", str(llist.middle_node))
 
         # 0 -> 1 -> 2 -> 3 -> 4 -> 5
         llist.append_right(5)
-        self.assertEqual(3, llist.middle_node.data)  # type: ignore
+        self.assertEqual("3 > ", str(llist.middle_node))
