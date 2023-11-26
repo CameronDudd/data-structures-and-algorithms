@@ -12,7 +12,7 @@ class Node:
     next_node: Optional[Any] = None
 
     def __str__(self) -> str:
-        return f"{self.data} > "
+        return str(self.data)
 
 
 @dataclass
@@ -20,6 +20,3 @@ class DoublyLinkedNode(Node):
     """Doubly linked node data structure"""
 
     prev_node: Optional[Any] = None
-
-    def __str__(self) -> str:
-        return " < " + super().__str__()

@@ -14,7 +14,7 @@ class TestDoublyLlist(TestCase):
         self.assertIsNone(test_dnode.data)
         self.assertIsNone(test_dnode.next_node)
         self.assertIsNone(test_dnode.prev_node)
-        self.assertEqual(" < None > ", str(test_dnode))
+        self.assertEqual("None", str(test_dnode))
 
     def test_dllist_easy(self) -> None:
         """test DoublyLinkedList class"""
@@ -24,8 +24,8 @@ class TestDoublyLlist(TestCase):
 
         test_dllist.append_left("middle")
 
-        self.assertEqual(" < middle > ", str(test_dllist.head))
-        self.assertEqual(" < middle > ", str(test_dllist.tail))
+        self.assertEqual("middle", str(test_dllist.head))
+        self.assertEqual("middle", str(test_dllist.tail))
 
         assert test_dllist.head is not None, "test_dllist.head should not be None"
         assert test_dllist.tail is not None, "test_dllist.tail should not be None"

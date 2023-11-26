@@ -13,14 +13,14 @@ class TestLlist(TestCase):
         test_node = Node()
         self.assertIsNone(test_node.data)
         self.assertIsNone(test_node.next_node)
-        self.assertEqual("None > ", str(test_node))
+        self.assertEqual("None", str(test_node))
 
     def test_llist_easy(self) -> None:
         """test the LinkedList class"""
         # create test llist
         test_llist = LinkedList()
         test_llist.append_left("middle")
-        self.assertEqual("middle > ", str(test_llist.head))
+        self.assertEqual("middle", str(test_llist.head))
         assert test_llist.head is not None, "test_llist.next_node should not be None"
         self.assertIsNone(test_llist.head.next_node)
         self.assertEqual("<middle>", str(test_llist))
@@ -108,24 +108,24 @@ class TestLlist(TestCase):
 
         # 0
         llist.append_left(0)
-        self.assertEqual("0 > ", str(llist.middle_node))
+        self.assertEqual("0", str(llist.middle_node))
 
         # 0 -> 1
         llist.append_right(1)
-        self.assertEqual("1 > ", str(llist.middle_node))
+        self.assertEqual("1", str(llist.middle_node))
 
         # 0 -> 1 -> 2
         llist.append_right(2)
-        self.assertEqual("1 > ", str(llist.middle_node))
+        self.assertEqual("1", str(llist.middle_node))
 
         # 0 -> 1 -> 2 -> 3
         llist.append_right(3)
-        self.assertEqual("2 > ", str(llist.middle_node))
+        self.assertEqual("2", str(llist.middle_node))
 
         # 0 -> 1 -> 2 -> 3 -> 4
         llist.append_right(4)
-        self.assertEqual("2 > ", str(llist.middle_node))
+        self.assertEqual("2", str(llist.middle_node))
 
         # 0 -> 1 -> 2 -> 3 -> 4 -> 5
         llist.append_right(5)
-        self.assertEqual("3 > ", str(llist.middle_node))
+        self.assertEqual("3", str(llist.middle_node))
