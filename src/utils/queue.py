@@ -1,4 +1,4 @@
-"""Queues"""
+"""Queues (FIFO)"""
 
 from typing import Optional, Any
 
@@ -13,6 +13,14 @@ class Queue:
         self._tail: Optional[Node] = None
         self._size = 0
         self.max_size = max_size
+
+    def __str__(self) -> str:
+        str_ = ""
+        current_node = self._head
+        while current_node is not None:
+            str_ += str(current_node)
+            current_node = current_node.next_node
+        return str_
 
     @property
     def size(self) -> int:
@@ -39,13 +47,26 @@ class Queue:
 
     def enqueue(self, value: Optional[Any] = None) -> None:
         """add to head of queue"""
-        if self.has_space:
-            item_to_add = Node(value)
-            if self.empty:
-                self._head = item_to_add
-                self._tail = item_to_add
-            else:
-                assert self._tail is not None
-                self._tail.next_node = item_to_add
-                self._tail = item_to_add
-            self._size += 1
+        assert self.has_space
+        item_to_add = Node(value)
+        if self.empty:
+            self._head = item_to_add
+            self._tail = item_to_add
+        else:
+            assert self._tail is not None
+            self._tail.next_node = item_to_add
+            self._tail = item_to_add
+        self._size += 1
+
+    def dequeue(self) -> Optional[Any]:
+        """remove from the head of the queue"""
+        assert not self.empty
+        item_to_remove = self._head
+        if self.size == 1:
+            self._head = None
+            self._tail = None
+        else:
+            assert self._head is not None
+            self._head = self._head.next_node
+        self._size -= 1
+        return None if item_to_remove is None else item_to_remove.data
