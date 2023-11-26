@@ -18,7 +18,7 @@ class Queue:
         str_ = ""
         current_node = self._head
         while current_node is not None:
-            str_ += str(current_node)
+            str_ += f"{str(current_node)} > "
             current_node = current_node.next_node
         return str_
 
