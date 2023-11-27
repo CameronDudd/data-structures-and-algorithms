@@ -41,5 +41,20 @@ class TestQueue(TestCase):
         self.assertEqual(0, queue.size)
         self.assertEqual("test 2", second_removed)
 
-        with self.assertRaises(AssertionError):
-            queue.dequeue()
+    def test_overflow(self) -> None:
+        """test queue exception when overflowed"""
+        for limit_size in range(100):
+            queue = Queue(limit_size)
+            with self.assertRaises(AssertionError):
+                for _ in range(limit_size + 1):
+                    queue.enqueue()
+
+    def test_underflow(self) -> None:
+        """test queue exception when underflowed"""
+        for limit_size in range(100):
+            queue = Queue(limit_size)
+            for _ in range(limit_size):
+                queue.enqueue()
+            with self.assertRaises(AssertionError):
+                for _ in range(limit_size + 1):
+                    queue.dequeue()
