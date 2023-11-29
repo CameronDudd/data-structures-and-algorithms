@@ -29,8 +29,6 @@ class TestQueue(TestCase):
         self.assertEqual("test", queue.peek())
         self.assertEqual(queue.size, 2)
 
-        self.assertEqual("test > test 2 > ", str(queue))
-
         # removing
         first_removed = queue.dequeue()
         self.assertEqual(1, queue.size)

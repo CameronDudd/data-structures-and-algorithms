@@ -14,14 +14,6 @@ class Queue:
         self._size = 0
         self.max_size = max_size
 
-    def __str__(self) -> str:
-        str_ = ""
-        current_node = self._head
-        while current_node is not None:
-            str_ += f"{str(current_node)} > "
-            current_node = current_node.next_node
-        return str_
-
     @property
     def size(self) -> int:
         """return size of queue"""
