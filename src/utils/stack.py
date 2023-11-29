@@ -35,6 +35,7 @@ class Stack:
 
     def push(self, value: Optional[Any]) -> None:
         """push item onto the stack"""
+        assert self.has_space
         item = Node(value)
         item.next_node = self._top
         self._top = item
