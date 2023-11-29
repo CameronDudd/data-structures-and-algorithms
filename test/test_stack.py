@@ -33,3 +33,30 @@ class TestStack(TestCase):
         self.assertEqual("test 2", first_popped_value)
         second_popped_value = stack.pop()
         self.assertEqual("test", second_popped_value)
+
+    def test_underflow(self) -> None:
+        """test exception when stack underflow"""
+        stack = Stack(limit=1)
+
+        # add node
+        stack.push("test")
+
+        # remove node
+        test = stack.pop()
+        self.assertEqual("test", test)
+
+        # underflow stack
+        with self.assertRaises(AssertionError):
+            stack.pop()
+
+    def test_overflow(self) -> None:
+        """test exception when stack overflow"""
+
+        stack = Stack(limit=1)
+
+        # add node
+        stack.push("test")
+
+        # overflow stack
+        with self.assertRaises(AssertionError):
+            stack.push("overflow")
