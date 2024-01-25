@@ -119,14 +119,14 @@ class LinkedList:
         node2.next_node = node1.next_node
         node1.next_node = node2_prev_next_node
 
-    def nth_last_node(self, n: int) -> Node:
+    def nth_last_node(self, nth_node: int) -> Node:
         """find the nth last node in the list"""
         nth_last_pointer: Optional[Node] = None
         tail_pointer: Optional[Node] = self._head_node
         count = 0
 
         while tail_pointer is not None:
-            if count >= n:
+            if count >= nth_node:
                 if nth_last_pointer is None:
                     nth_last_pointer = self._head_node
                 else:
