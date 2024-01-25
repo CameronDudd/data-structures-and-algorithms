@@ -13,6 +13,15 @@ class Stack:
         self.limit = limit
         self._top: Optional[Node] = None
 
+    def __str__(self) -> str:
+        str_ = "["
+        current_node = self.peek()
+        while current_node is not None:
+            str_ += f" {current_node} "
+            current_node = current_node.next_node
+        str_ += "]"
+        return str_
+
     @property
     def size(self) -> int:
         """current size of stack"""
@@ -52,3 +61,8 @@ class Stack:
     def peek(self) -> Optional[Any]:
         """return top of stack"""
         return self.top
+
+
+class HanoiStack(Stack):
+    def __init__(self, name: str = "", limit: int = 100):
+        super().__init__(limit)
