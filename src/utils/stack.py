@@ -64,5 +64,8 @@ class Stack:
 
 
 class HanoiStack(Stack):
+    """HanoiStack data structure"""
+
     def __init__(self, name: str = "", limit: int = 100):
+        self.name = name
         super().__init__(limit)

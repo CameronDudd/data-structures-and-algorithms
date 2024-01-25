@@ -38,7 +38,7 @@ from typing import Any, Optional, List, Tuple
 class HashMap:
     """Hash Map"""
 
-    # todo:
+    # todo:  pylint: disable=fixme
     # - delete a k, v pair from the map
     # - make DRY code
     # - array is full
