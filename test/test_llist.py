@@ -44,9 +44,9 @@ class TestLlist(TestCase):
         self.assertEqual("<start, middle, end>", str(test_llist))
 
         # remove node that doesn't exist
-        with self.assertRaises(ValueError) as ve:
+        with self.assertRaises(ValueError) as value_error:
             test_llist.remove_node("value not in list")
-        self.assertEqual("value not in list not found in llist", str(ve.exception))
+        self.assertEqual("value not in list not found in llist", str(value_error.exception))
 
     def test_llist_swapping_nodes(self) -> None:
         """test the ability to swap nodes within the llist"""
@@ -67,17 +67,17 @@ class TestLlist(TestCase):
         self.assertEqual("<start, middle, end>", str(test_llist))
 
         # first not present
-        with self.assertRaises(ValueError) as ve:
+        with self.assertRaises(ValueError) as value_error:
             test_llist.swap_nodes("not in llist", "middle")
-        self.assertEqual("'not in llist' not found in llist", str(ve.exception))
+        self.assertEqual("'not in llist' not found in llist", str(value_error.exception))
         # second not present
-        with self.assertRaises(ValueError) as ve:
+        with self.assertRaises(ValueError) as value_error:
             test_llist.swap_nodes("middle", "not in llist")
-        self.assertEqual("'not in llist' not found in llist", str(ve.exception))
+        self.assertEqual("'not in llist' not found in llist", str(value_error.exception))
         # both not present
-        with self.assertRaises(ValueError) as ve:
+        with self.assertRaises(ValueError) as value_error:
             test_llist.swap_nodes("not in llist", "also not in llist")
-        self.assertEqual("'not in llist' and 'also not in llist' not found in llist", str(ve.exception))
+        self.assertEqual("'not in llist' and 'also not in llist' not found in llist", str(value_error.exception))
 
     def test_llist_nth_last_node(self) -> None:
         """test llist nth last node"""
@@ -98,9 +98,9 @@ class TestLlist(TestCase):
         self.assertEqual(1, third_to_last_node.data)
         fourth_to_last_node = llist.nth_last_node(4)
         self.assertEqual(0, fourth_to_last_node.data)
-        with self.assertRaises(ValueError) as ve:
+        with self.assertRaises(ValueError) as value_error:
             llist.nth_last_node(5)
-        self.assertEqual("nth_last_pointer None", str(ve.exception))
+        self.assertEqual("nth_last_pointer None", str(value_error.exception))
 
     def test_llist_middle_node(self) -> None:
         """test llist llist middle node"""
