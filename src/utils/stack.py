@@ -69,3 +69,11 @@ class HanoiStack(Stack):
     def __init__(self, name: str = "", limit: int = 100):
         self.name = name
         super().__init__(limit)
+
+    def __str__(self) -> str:
+        nodes = []
+        current_node = self.peek()
+        while current_node is not None:
+            nodes.append(current_node)
+            current_node = current_node.next_node
+        return "[" + ", ".join(str(node) for node in nodes[::-1]) + "]"
