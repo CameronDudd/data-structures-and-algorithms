@@ -7,14 +7,14 @@ def depth_of_bst(tree: Optional[Dict[Any, Any]]) -> int:
     """find the depth of a tree built by build_bst"""
     if tree is None:
         return 0
-    l = depth_of_bst(tree.get("left_child", None))
-    r = depth_of_bst(tree.get("right_child", None))
-    if l > r:
-        return l + 1
-    return r + 1
+    left = depth_of_bst(tree.get("left_child", None))
+    right = depth_of_bst(tree.get("right_child", None))
+    if left > right:
+        return left + 1
+    return right + 1
 
 
-def build_bst(input_arr: List[Any]) -> Dict[str, Any]:
+def build_bst(input_arr: List[Any]) -> Optional[Dict[str, Any]]:
     """build binary search tree"""
     if len(input_arr) == 0:
         return None
@@ -23,7 +23,9 @@ def build_bst(input_arr: List[Any]) -> Dict[str, Any]:
     return {
         "data": middle_value,
         "left_child": build_bst(input_arr[:middle_idx]),
-        "right_child": build_bst(input_arr[middle_idx + 1 :]),
+        # fmt: off
+        "right_child": build_bst(input_arr[middle_idx + 1:]),
+        # fmt: on
     }
 
 
